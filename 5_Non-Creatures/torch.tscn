@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://ba5dk32e0j0rm"]
+
+[ext_resource type="Texture2D" uid="uid://wkbgojuja8qo" path="res://Resources/Sprites/torch.png" id="1_npmml"]
+[ext_resource type="Texture2D" uid="uid://c5up4dipqamqh" path="res://Resources/Sprites/point light mask.png" id="2_xu2bc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_062ix"]
+atlas = ExtResource("1_npmml")
+region = Rect2(0, 0, 16, 16)
+
+[node name="Torch" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3, 0)
+texture = SubResource("AtlasTexture_062ix")
+
+[node name="around" type="PointLight2D" parent="."]
+position = Vector2(3, -1)
+color = Color(0.971841, 0.640593, 0.561068, 1)
+energy = 1.5
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 1)
+texture = ExtResource("2_xu2bc")
+texture_scale = 0.2
+
+[node name="shoot" type="PointLight2D" parent="."]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(3, -1)
+color = Color(0.925043, 0.666643, 0.642695, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_filter = 1
+texture = ExtResource("2_xu2bc")
+texture_scale = 0.5

@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://bowsm02srw3wm"]
+
+[ext_resource type="PackedScene" uid="uid://bguwl53x5yjb1" path="res://5_Non-Creatures/branch_middle1.tscn" id="2_ok4cs"]
+[ext_resource type="PackedScene" uid="uid://b1hj1nrryetkg" path="res://5_Non-Creatures/branch_middle2.tscn" id="2_rs5w6"]
+[ext_resource type="PackedScene" uid="uid://bcuin61udgn5f" path="res://5_Non-Creatures/branch_end.tscn" id="3_j1oc8"]
+
+[node name="Branch" type="Node2D"]
+
+[node name="branch1" parent="." instance=ExtResource("2_ok4cs")]
+position = Vector2(0, 8)
+freeze = true
+
+[node name="PinJoint2D" type="PinJoint2D" parent="branch1"]
+position = Vector2(0, 7)
+node_a = NodePath("..")
+node_b = NodePath("../../branch2")
+
+[node name="branch2" parent="." instance=ExtResource("2_rs5w6")]
+position = Vector2(0, 23)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="branch2"]
+position = Vector2(0, 8)
+node_a = NodePath("..")
+node_b = NodePath("../../branch3")
+
+[node name="branch3" parent="." instance=ExtResource("2_rs5w6")]
+position = Vector2(0, 39)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="branch3"]
+position = Vector2(0, 8)
+node_a = NodePath("..")
+node_b = NodePath("../../branch4")
+
+[node name="branch4" parent="." instance=ExtResource("2_rs5w6")]
+position = Vector2(0, 55)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="branch4"]
+position = Vector2(0, 8)
+node_a = NodePath("..")
+node_b = NodePath("../../branch5")
+
+[node name="branch5" parent="." instance=ExtResource("2_ok4cs")]
+position = Vector2(0, 71)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="branch5"]
+position = Vector2(0, 7)
+node_a = NodePath("..")
+node_b = NodePath("../../branch6")
+
+[node name="branch6" parent="." instance=ExtResource("2_rs5w6")]
+position = Vector2(0, 86)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="branch6"]
+position = Vector2(0, 8)
+node_a = NodePath("..")
+node_b = NodePath("../../branch7")
+
+[node name="branch7" parent="." instance=ExtResource("2_rs5w6")]
+position = Vector2(0, 102)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="branch7"]
+position = Vector2(0, 8)
+node_a = NodePath("..")
+node_b = NodePath("../../branch8")
+
+[node name="branch8" parent="." instance=ExtResource("2_rs5w6")]
+position = Vector2(0, 118)
+
+[node name="PinJoint2D" type="PinJoint2D" parent="branch8"]
+position = Vector2(0, 8)
+node_a = NodePath("..")
+node_b = NodePath("../../branch")
+
+[node name="branch" parent="." instance=ExtResource("3_j1oc8")]
+position = Vector2(0, 134)

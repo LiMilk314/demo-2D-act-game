@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3m3kyq12le4p"]
+
+[ext_resource type="Script" path="res://3_BasicFunctions/ItemContainer.gd" id="1_nqckh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2wxs"]
+bg_color = Color(0.392157, 0.392157, 0.392157, 0.25098)
+
+[node name="ItemContainer" type="Node2D"]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_nqckh")
+grid_rows = 1
+grid_columns = 1
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 140.0
+offset_bottom = 140.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_x2wxs")
+
+[node name="GridContainer" type="GridContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 140.0
+offset_bottom = 140.0
+mouse_filter = 2
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+columns = 4

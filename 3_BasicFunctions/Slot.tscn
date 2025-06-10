@@ -1,0 +1,148 @@
+[gd_scene load_steps=11 format=3 uid="uid://entifaq1fr1v"]
+
+[ext_resource type="Script" path="res://3_BasicFunctions/Slot.gd" id="1_vb6id"]
+[ext_resource type="FontFile" uid="uid://bgqwtadkrcy2w" path="res://Resources/Fonts/VonwaonBitmap-12px.ttf" id="2_nmhpp"]
+[ext_resource type="Texture2D" uid="uid://byj3dxo1sbj6x" path="res://Resources/Sprites/slot_frame.png" id="2_npdl5"]
+[ext_resource type="Texture2D" uid="uid://ckemlv635fqxn" path="res://Resources/Sprites/Items/item_1.png" id="3_iru3p"]
+[ext_resource type="FontFile" uid="uid://d1hlo6y6oimw3" path="res://Resources/Fonts/VonwaonBitmap-16px.ttf" id="4_5dl61"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2bmlp"]
+size = Vector2(16, 16)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h05le"]
+bg_color = Color(0.212305, 0.212305, 0.212305, 0.541176)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqqcx"]
+bg_color = Color(0.262745, 0.403922, 0.533333, 0.509804)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_seg8h"]
+line_spacing = 5.0
+font = ExtResource("4_5dl61")
+outline_color = Color(0.785842, 1, 0.910416, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01h8t"]
+bg_color = Color(0.225286, 0.44011, 0.344208, 0.509804)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+
+[node name="Slot" type="MarginContainer" groups=["Slot"]]
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 16.0
+mouse_filter = 2
+script = ExtResource("1_vb6id")
+
+[node name="SlotBG" type="ColorRect" parent="."]
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.784314, 0.627451, 0.627451, 0.352941)
+
+[node name="SlotFrame" type="TextureRect" parent="."]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_npdl5")
+
+[node name="ItemSprite" type="Sprite2D" parent="."]
+z_index = 1
+z_as_relative = false
+position = Vector2(16, 16)
+texture = ExtResource("3_iru3p")
+
+[node name="QuanLabel" type="Label" parent="."]
+z_index = 2
+z_as_relative = false
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_fonts/font = ExtResource("2_nmhpp")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_2bmlp")
+
+[node name="Description" type="Node2D" parent="."]
+z_index = 2
+z_as_relative = false
+position = Vector2(16, 0)
+
+[node name="HoverTimer" type="Timer" parent="Description"]
+one_shot = true
+
+[node name="Panel" type="Panel" parent="Description"]
+offset_right = 200.0
+offset_bottom = 60.0
+scale = Vector2(0.3, 0.3)
+theme_override_styles/panel = SubResource("StyleBoxFlat_h05le")
+
+[node name="GridContainer" type="GridContainer" parent="Description/Panel"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 50.0
+theme_override_constants/v_separation = 10
+
+[node name="DescribeLabel" type="Label" parent="Description/Panel/GridContainer"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_mqqcx")
+text = "物品描述
+"
+label_settings = SubResource("LabelSettings_seg8h")
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="EffectLabel" type="Label" parent="Description/Panel/GridContainer"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_01h8t")
+text = "使用效果
+"
+label_settings = SubResource("LabelSettings_seg8h")
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Options" type="Node2D" parent="."]
+z_index = 2
+z_as_relative = false
+position = Vector2(16, 16)
+scale = Vector2(0.5, 0.5)
+
+[node name="GridContainer" type="GridContainer" parent="Options"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 2
+
+[node name="UseButton" type="Button" parent="Options/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nmhpp")
+theme_override_font_sizes/font_size = 12
+text = "使用"
+
+[node name="DropButton" type="Button" parent="Options/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nmhpp")
+theme_override_font_sizes/font_size = 12
+text = "丢弃"
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="timeout" from="Description/HoverTimer" to="." method="_on_hover_timer_timeout"]
+[connection signal="button_down" from="Options/GridContainer/UseButton" to="." method="_on_use_button_button_down"]
+[connection signal="button_down" from="Options/GridContainer/DropButton" to="." method="_on_drop_button_button_down"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1hj1nrryetkg"]
+
+[ext_resource type="Texture2D" uid="uid://b4cd0ig5sqc1q" path="res://Resources/Sprites/branch.png" id="1_vrimg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x87s5"]
+radius = 1.0
+height = 16.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1mn2"]
+atlas = ExtResource("1_vrimg")
+region = Rect2(0, 16, 16, 16)
+
+[node name="branch" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_x87s5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_t1mn2")
